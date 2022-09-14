@@ -1,3 +1,4 @@
+<!-- eslint-disable max-len -->
 <template lang="pug">
 section-template(
   :title="$t('projects.sectionTitle')"
@@ -20,43 +21,28 @@ section-template(
         div(class="card-content")
           div(class="row")
             div(
-           class="text-black-1 text-caption q-pa-none q-mb-sm"
-             style="border-radius: 100ex; border: 1px solid #303030"
-             class="q-py-xs q-px-md"
-             :class="{ 'q-mr-xs': tagIndex <= project.tags.length - 1}"
-             v-for="(tag, tagIndex) in project.tags"
-             :key="tag"
-           )
-             | {{ tag }}
+              class="text-black-1 text-caption q-pa-none q-mb-sm q-py-xs q-px-md"
+              style="border-radius: 100ex; border: 1px solid #303030"
+              :class="{ 'q-mr-xs': tagIndex <= project.tags.length - 1}"
+              v-for="(tag, tagIndex) in project.tags"
+              :key="tag"
+            )
+              | {{ tag }}
           h1.font-playfair.text-h4.text-weight-medium.text-black-1.q-mt-none.q-mb-lg
             | {{ project.title }}
           p.text-black-2.text-black-4.text-weight-regular.q-mb-lg.description
             | {{ project.description }}
-          div(class="column")
-            q-btn(
-              rounded
-              style="letter-spacing: 2px; font-size: 0.75rem;"
-              :style="'background: ' + project.btnColor"
-              class="q-mt-md text-grey-1"
-              padding="0.85rem 3rem"
-              @click="openNewTab(project.liveLink)"
-              unelevated
-              :label="$t('projects.liveButton')"
-              class="btn-box-shadow"
-            )
-            q-btn(
-              outline
-              color="grey-6"
-              unelevated
-              rounded
-              size="sm"
-              style="letter-spacing: 2px;"
-              class="q-mt-md"
-              padding="0.85rem 3rem"
-              icon="fab fa-github"
-              @click="openNewTab(project.repoLink)"
-              :label="$t('projects.repoButton')"
-            )
+          q-btn(
+            rounded
+            style="letter-spacing: 2px; font-size: 0.75rem;"
+            :style="project.btnStyle"
+            class="q-mt-md text-grey-1"
+            padding="0.85rem 3rem"
+            @click="openNewTab(project.link)"
+            unelevated
+            label="View Project"
+            class="btn-box-shadow"
+          )
 </template>
 
 <script>
@@ -73,14 +59,13 @@ export default {
     projects: [
       {
         id: 1,
-        order: 4,
+        order: 3,
         title: 'A simple Weather app',
         description: 'A simple web app that consumes a API for previewing the weather.',
         image: 'weather-app.png',
         bgImage: 'bg-green.svg',
-        btnColor: 'linear-gradient(225deg, #0FCFA1 0%, #65B8E7 100%);',
-        repoLink: 'https://github.com/samukdev/weather-app',
-        liveLink: 'https://samukdev.github.io/weather-app/',
+        btnStyle: 'background: linear-gradient(225deg, #0FCFA1 0%, #65B8E7 100%);',
+        link: 'https://github.com/samukdev/weather-app',
         tags: ['Vue'],
       },
       {
@@ -89,34 +74,31 @@ export default {
         title: 'Pokedex',
         description: 'Find and know more details about a pokemon.',
         image: 'pokedex.png',
+        bgImage: 'bg-red.svg',
+        btnStyle: 'background: linear-gradient(225deg, #FE4545 0%, #D62C92 100%);',
+        link: 'https://github.com/samukdev/PokemonList',
+        tags: ['Javascript', 'Vue', 'Quasar'],
+      },
+      {
+        id: 3,
+        order: 4,
+        title: 'Pomodoro Clock',
+        description: 'Same time, more efficiency',
+        image: 'pomodoro.png',
         bgImage: 'bg-purple.svg',
-        btnColor: 'linear-gradient(225deg, #7A5DEF 0%, #6567E7 100%);',
-        repoLink: 'https://github.com/samukdev/PokemonList',
-        liveLink: 'https://pokedex-iota-beryl.vercel.app/#/',
-        tags: ['Javascript', 'Vue', 'Node JS'],
+        btnStyle: 'background: linear-gradient(225deg, #7A5DEF 0%, #6567E7 100%);',
+        link: 'https://github.com/samukdev/covid19-report',
+        tags: ['Vue'],
       },
       {
         id: 4,
         order: 1,
-        title: 'Git Get Repos',
-        description: 'Get a list of repositories by github username and view more details about any repository.',
-        image: 'git-get-repos.png',
-        bgImage: 'bg-red.svg',
-        btnColor: 'linear-gradient(225deg, #FE4545 0%, #D62C92 100%);',
-        repoLink: 'https://github.com/samukdev/git-get-repos',
-        liveLink: 'https://git-get-repos.vercel.app/',
-        tags: ['Javascript', 'Vue', 'Nuxt'],
-      },
-      {
-        id: 3,
-        order: 3,
         title: 'Login Page',
         description: 'A responsive login page made with Vue and Firebase.',
         image: 'nuxt-login.png',
         bgImage: 'bg-blue.svg',
-        btnColor: 'linear-gradient(225deg, #65B8E7 0%, #5182FF 86.98%);',
-        repoLink: 'https://github.com/samukdev/nuxt-app',
-        liveLink: 'https://nuxtapp-rose.vercel.app/',
+        btnStyle: 'background: linear-gradient(225deg, #65B8E7 0%, #5182FF 86.98%);',
+        link: 'https://github.com/samukdev/nuxt-app',
         tags: ['Vue', 'Nuxt', 'Firebase'],
       },
     ],

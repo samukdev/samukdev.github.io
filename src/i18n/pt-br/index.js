@@ -24,8 +24,6 @@ export default {
   projects: {
     sectionTitle: 'Projetos',
     sectionSubtitle: 'Alguns dos projetos do meu GitHub.',
-    repoButton: 'Abrir Repositório',
-    liveButton: 'Abrir Projeto',
   },
   contactMe: {
     title: 'Obrigado pela visita!',
