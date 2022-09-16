@@ -1,46 +1,42 @@
-<template lang="pug">
-div(
+<template>
+<div
   class="parent-container"
-  @mouseover="showButton = true"
-  @mouseleave="showButton = false"
   @click="copyToClipboard()"
-)
-  div(id="copyTarget" ref="copyTarget" v-show="false")
-  div(class="main-content")
-    div(class="flex items-center text-uppercase" style="letter-spacing: 1px; font-size: 0.85rem;")
-      q-icon(
+>
+  <div id="copyTarget" ref="copyTarget" v-show="false"></div>
+  <div class="main-content">
+    <div class="flex items-center text-uppercase" style="letter-spacing: 1px; font-size: 0.85rem;">
+      <q-icon
         name="mail"
         size="1.5rem"
         class="q-mr-md"
-      )
-      | {{ email }}
+      />
+      {{ email }}
+    </div>
+  </div>
 
-  transition(
-    class="gt-sm"
-    appear
-    enter-active-class="animated fadeIn"
-    leave-active-class="animated fadeOut"
-  )
-    div(
-      v-if="showButton"
-      class="overlay-content rounded-borders")
-        div(
-          class="flex items-center text-uppercase"
-          style="letter-spacing: 2px; font-size: 0.85rem;"
-        )
-          q-icon(
-            name="content_copy"
-            size="1.5rem"
-            class="q-mr-sm"
-          )
-          | {{ $t('CTA.label') }}
+  <div
+    class="overlay-content rounded-borders"
+  >
+      <div
+        class="flex items-center text-uppercase"
+        style="letter-spacing: 2px; font-size: 0.85rem;"
+      >
+        <q-icon
+          name="content_copy"
+          size="1.5rem"
+          class="q-mr-sm"
+        />
+        {{ $t('CTA.label') }}
+      </div>
+  </div>
+</div>
 </template>
 
 <script>
 export default {
   data: () => ({
     email: 'samuelbs98@gmail.com',
-    showButton: false,
   }),
 
   methods: {
@@ -63,6 +59,12 @@ export default {
     position: relative;
     font-size: 1.2rem;
     max-width: 400px;
+
+    &:hover {
+      .overlay-content {
+        opacity: 1;
+      }
+    }
   }
 
   .parent-container:hover {
@@ -89,6 +91,8 @@ export default {
     top: 0;
     right: 0;
     font-weight: 500;
+    opacity: 0;
+    transition: opacity .25s ease-out;
 
     display: flex;
     flex-direction: row;
