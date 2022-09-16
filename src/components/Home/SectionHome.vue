@@ -13,7 +13,7 @@ const {
 const setPreviousValue = (value) => { previousValue.value = value; };
 
 const cardTransform = computed(() => {
-  const MAX_ROTATION = 18;
+  const MAX_ROTATION = 42;
 
   const rX = (
     MAX_ROTATION / 2 - (elementY.value / elementHeight.value) * MAX_ROTATION).toFixed(2);
@@ -21,13 +21,13 @@ const cardTransform = computed(() => {
   const rY = -(
     MAX_ROTATION / 2 - (elementX.value / elementWidth.value) * MAX_ROTATION).toFixed(2);
 
-  if (isOutside.value && !previousValue.value) { return ''; }
+  if (isOutside.value && !previousValue.value) { return 'perspective(100vw) rotateY(0deg) rotateX(0deg)'; }
 
   if (isOutside.value && previousValue.value) {
     return previousValue.value;
   }
 
-  const value = `perspective(${elementWidth.value}px) rotateY(${rY}deg) rotateX(${rX}deg)`;
+  const value = `perspective(100vw) rotateY(${rY}deg) rotateX(${rX}deg)`;
 
   setPreviousValue(value);
 
@@ -36,7 +36,7 @@ const cardTransform = computed(() => {
 </script>
 
 <template>
-<div class="wrapper column q-pa-md">
+<div class="wrapper column q-pa-md" ref="target">
   <div class="col flex flex-center">
     <transition
       appear
@@ -45,7 +45,6 @@ const cardTransform = computed(() => {
     >
       <div
         class="message-container default-box q-pa-xl"
-        ref="target"
         :style="{ transform: $q.platform.is.mobile ? '' : cardTransform }"
       >
         <h1 class="q-my-none text-center font-playfair">
@@ -74,7 +73,7 @@ const cardTransform = computed(() => {
 <style scoped lang="scss">
 .message-container {
   margin-top: -6rem;
-  transition: 'transform .2s ease-out';
+  transition: transform .25s ease-out;
 }
 .wrapper {
   background: url('/waveheader.svg');
