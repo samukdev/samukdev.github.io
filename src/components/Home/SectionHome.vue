@@ -11,8 +11,9 @@ const {
 } = useMouseInElement(target);
 
 const setPreviousValue = (value) => { previousValue.value = value; };
+
 const cardTransform = computed(() => {
-  const MAX_ROTATION = 10;
+  const MAX_ROTATION = 18;
 
   const rX = (
     MAX_ROTATION / 2 - (elementY.value / elementHeight.value) * MAX_ROTATION).toFixed(2);
@@ -45,7 +46,7 @@ const cardTransform = computed(() => {
       <div
         class="message-container default-box q-pa-xl"
         ref="target"
-        :style="{ transform: cardTransform }"
+        :style="{ transform: $q.platform.is.mobile ? '' : cardTransform }"
       >
         <h1 class="q-my-none text-center font-playfair">
           {{ $t('home.title') }}
