@@ -154,9 +154,9 @@ module.exports = configure((ctx) => ({
     },
 
     manifest: {
-      name: 'Quasar App',
-      short_name: 'Quasar App',
-      description: 'A Quasar Project',
+      name: 'Samuk Developer',
+      short_name: 'Samuk Developer',
+      description: 'Web page for Samuk dev',
       display: 'standalone',
       orientation: 'portrait',
       background_color: '#ffffff',
